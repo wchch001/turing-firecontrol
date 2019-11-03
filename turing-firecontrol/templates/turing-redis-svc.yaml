@@ -1,0 +1,17 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    cattle.io/creator: norman
+  name: turing-redis
+spec:
+  ports:
+  - name: 6379tcp02
+    port: 6379
+    protocol: TCP
+    targetPort: 6379
+  selector:
+    workload.user.cattle.io/workloadselector: deployment-turing-turing-redis
+  type: ClusterIP
+status:
+  loadBalancer: {}

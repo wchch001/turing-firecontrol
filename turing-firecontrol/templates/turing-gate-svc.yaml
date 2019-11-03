@@ -1,0 +1,15 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    cattle.io/creator: norman
+  name: turing-gate
+spec:
+  ports:
+  - name: 8765tcp02
+    port: 8765
+    protocol: TCP
+    targetPort: 8765
+  selector:
+    workload.user.cattle.io/workloadselector: deployment-turing-turing-gate
+  type: ClusterIP

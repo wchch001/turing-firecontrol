@@ -1,0 +1,19 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    cattle.io/creator: norman
+  name: turing-es
+spec:
+  ports:
+  - name: 9200tcp02
+    port: 9200
+    protocol: TCP
+    targetPort: 9200
+  - name: 9300tcp02
+    port: 9300
+    protocol: TCP
+    targetPort: 9300
+  selector:
+    workload.user.cattle.io/workloadselector: deployment-turing-turing-es
+  type: ClusterIP

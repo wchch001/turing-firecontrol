@@ -1,0 +1,15 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    cattle.io/creator: norman
+  name: turing-config
+spec:
+  ports:
+  - name: 8750tcp02
+    port: 8750
+    protocol: TCP
+    targetPort: 8750
+  selector:
+    workload.user.cattle.io/workloadselector: deployment-turing-turing-config
+  type: ClusterIP

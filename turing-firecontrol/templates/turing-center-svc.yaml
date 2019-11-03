@@ -1,0 +1,15 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    cattle.io/creator: norman
+  name: turing-center
+spec:
+  ports:
+  - name: 8761tcp02
+    port: 8761
+    protocol: TCP
+    targetPort: 8761
+  selector:
+    workload.user.cattle.io/workloadselector: deployment-turing-turing-center
+  type: ClusterIP

@@ -1,0 +1,15 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    cattle.io/creator: norman
+  name: turing-datahandler
+spec:
+  ports:
+  - name: 2345tcp02
+    port: 2345
+    protocol: TCP
+    targetPort: 2345
+  selector:
+    workload.user.cattle.io/workloadselector: deployment-turing-turing-datahandler
+  type: ClusterIP
