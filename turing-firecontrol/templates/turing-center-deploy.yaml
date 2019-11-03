@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: turing-center
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  name: turing-center
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: turing-center
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: turing-center
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+      - image: hub.iot.store/turing/turing-center:V1.7.0-RELEASE
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 20
+          periodSeconds: 2
+          successThreshold: 1
+          tcpSocket:
+            port: 8761
+          timeoutSeconds: 2
+        name: turing-center
+        ports:
+        - containerPort: 8761
+          name: 8761tcp02
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 20
+          periodSeconds: 2
+          successThreshold: 2
+          tcpSocket:
+            port: 8761
+          timeoutSeconds: 2
+        resources:
+          requests:
+            memory: 128Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: {}
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+      dnsConfig: {}
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: hub-iot
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
