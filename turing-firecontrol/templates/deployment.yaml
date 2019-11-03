@@ -560,7 +560,7 @@ items:
           - mountPath: /usr/share/elasticsearch/data
             name: es-data
         dnsPolicy: ClusterFirst
-        nodeName: worker04
+        nodeName: worker06
         restartPolicy: Always
         schedulerName: default-scheduler
         securityContext: {}
@@ -737,7 +737,7 @@ items:
         dnsPolicy: ClusterFirst
         imagePullSecrets:
         - name: hub-iot
-        nodeName: worker04
+        nodeName: worker06
         restartPolicy: Always
         schedulerName: default-scheduler
         securityContext: {}
@@ -831,7 +831,7 @@ items:
           - mountPath: /var/lib/rabbitmq
             name: rabbitmq-data
         dnsPolicy: ClusterFirst
-        nodeName: worker06
+        nodeName: worker04
         restartPolicy: Always
         schedulerName: default-scheduler
         securityContext: {}
