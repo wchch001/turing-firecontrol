@@ -2,4 +2,4 @@ apiVersion: v1
 appVersion: "V1.7.0-RELEASE"
 description: 智慧消防
 name: turing-firecontrol
-version: 0.1.1
+version: 0.1.2

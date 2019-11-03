@@ -5,20 +5,12 @@ items:
     cluster.name: turing-es
   kind: ConfigMap
   metadata:
-    annotations:
-      field.cattle.io/creatorId: user-ht8t8
-    creationTimestamp: 2019-11-03T05:59:27Z
     labels:
       cattle.io/creator: norman
     name: es-config
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-    annotations:
-      deployment.kubernetes.io/revision: "9"
-      field.cattle.io/creatorId: user-ht8t8
-    creationTimestamp: 2019-10-26T14:32:52Z
-    generation: 20
     labels:
       cattle.io/creator: norman
       workload.user.cattle.io/workloadselector: deployment-turing-turing-admin
@@ -37,10 +29,6 @@ items:
       type: RollingUpdate
     template:
       metadata:
-        annotations:
-          cattle.io/timestamp: 2019-11-03T04:21:59Z
-          field.cattle.io/ports: '[[{"containerPort":8762,"dnsName":"turing-admin","kind":"ClusterIP","name":"8762tcp02","protocol":"TCP","sourcePort":0}]]'
-        creationTimestamp: null
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-admin
       spec:
@@ -91,11 +79,6 @@ items:
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-    annotations:
-      deployment.kubernetes.io/revision: "19"
-      field.cattle.io/creatorId: user-ht8t8
-    creationTimestamp: 2019-10-26T11:25:03Z
-    generation: 28
     labels:
       cattle.io/creator: norman
       workload.user.cattle.io/workloadselector: deployment-turing-turing-auth
@@ -114,10 +97,6 @@ items:
       type: RollingUpdate
     template:
       metadata:
-        annotations:
-          cattle.io/timestamp: 2019-11-03T04:30:36Z
-          field.cattle.io/ports: '[[{"containerPort":9777,"dnsName":"turing-auth","kind":"ClusterIP","name":"9777tcp02","protocol":"TCP","sourcePort":0}]]'
-        creationTimestamp: null
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-auth
       spec:
@@ -168,12 +147,6 @@ items:
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-    annotations:
-      deployment.kubernetes.io/revision: "13"
-      field.cattle.io/creatorId: user-ht8t8
-      field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.10"],"port":80,"protocol":"HTTP","serviceName":"turing:turing-center","ingressName":"turing:center","hostname":"center.iot.store","allNodes":true}]'
-    creationTimestamp: 2019-10-26T10:55:37Z
-    generation: 34
     labels:
       cattle.io/creator: norman
       workload.user.cattle.io/workloadselector: deployment-turing-turing-center
@@ -192,10 +165,6 @@ items:
       type: RollingUpdate
     template:
       metadata:
-        annotations:
-          cattle.io/timestamp: 2019-11-01T09:19:46Z
-          field.cattle.io/ports: '[[{"containerPort":8761,"dnsName":"turing-center","kind":"ClusterIP","name":"8761tcp02","protocol":"TCP","sourcePort":0}]]'
-        creationTimestamp: null
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-center
       spec:
@@ -247,11 +216,6 @@ items:
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-    annotations:
-      deployment.kubernetes.io/revision: "13"
-      field.cattle.io/creatorId: user-ht8t8
-    creationTimestamp: 2019-10-26T11:19:50Z
-    generation: 22
     labels:
       cattle.io/creator: norman
       workload.user.cattle.io/workloadselector: deployment-turing-turing-config
@@ -270,10 +234,6 @@ items:
       type: RollingUpdate
     template:
       metadata:
-        annotations:
-          cattle.io/timestamp: 2019-11-03T03:49:00Z
-          field.cattle.io/ports: '[[{"containerPort":8750,"dnsName":"turing-config","kind":"ClusterIP","name":"8750tcp02","protocol":"TCP","sourcePort":0}]]'
-        creationTimestamp: null
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-config
       spec:
@@ -324,11 +284,6 @@ items:
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-    annotations:
-      deployment.kubernetes.io/revision: "7"
-      field.cattle.io/creatorId: user-ht8t8
-    creationTimestamp: 2019-10-26T15:13:28Z
-    generation: 16
     labels:
       cattle.io/creator: norman
       workload.user.cattle.io/workloadselector: deployment-turing-turing-datahandler
@@ -347,10 +302,6 @@ items:
       type: RollingUpdate
     template:
       metadata:
-        annotations:
-          cattle.io/timestamp: 2019-11-03T04:22:45Z
-          field.cattle.io/ports: '[[{"containerPort":2345,"dnsName":"turing-datahandler","kind":"ClusterIP","name":"2345tcp02","protocol":"TCP","sourcePort":0}]]'
-        creationTimestamp: null
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-datahandler
       spec:
@@ -400,11 +351,6 @@ items:
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-    annotations:
-      deployment.kubernetes.io/revision: "12"
-      field.cattle.io/creatorId: user-ht8t8
-    creationTimestamp: 2019-10-26T14:37:10Z
-    generation: 20
     labels:
       cattle.io/creator: norman
       workload.user.cattle.io/workloadselector: deployment-turing-turing-device
@@ -423,10 +369,6 @@ items:
       type: RollingUpdate
     template:
       metadata:
-        annotations:
-          cattle.io/timestamp: 2019-11-03T04:22:48Z
-          field.cattle.io/ports: '[[{"containerPort":8765,"dnsName":"turing-device","kind":"ClusterIP","name":"8765tcp02","protocol":"TCP","sourcePort":0}]]'
-        creationTimestamp: null
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-device
       spec:
@@ -476,11 +418,6 @@ items:
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-    annotations:
-      deployment.kubernetes.io/revision: "2"
-      field.cattle.io/creatorId: user-ht8t8
-    creationTimestamp: 2019-11-03T05:59:57Z
-    generation: 2
     labels:
       cattle.io/creator: norman
       workload.user.cattle.io/workloadselector: deployment-turing-turing-es
@@ -499,11 +436,6 @@ items:
       type: RollingUpdate
     template:
       metadata:
-        annotations:
-          cattle.io/timestamp: 2019-11-03T06:01:22Z
-          field.cattle.io/ports: '[[{"containerPort":9200,"dnsName":"turing-es","kind":"ClusterIP","name":"9200tcp02","protocol":"TCP","sourcePort":0},{"containerPort":9300,"dnsName":"turing-es","kind":"ClusterIP","name":"9300tcp02","protocol":"TCP","sourcePort":0}]]'
-          workload.cattle.io/state: '{"d29ya2VyMDQ=":"c-4bf79:m-ee4efbbfa181"}'
-        creationTimestamp: null
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-es
       spec:
@@ -573,12 +505,6 @@ items:
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-    annotations:
-      deployment.kubernetes.io/revision: "7"
-      field.cattle.io/creatorId: user-ht8t8
-      field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.10"],"port":80,"protocol":"HTTP","serviceName":"turing:turing-gate","ingressName":"turing:gate","hostname":"gate.iot.store","allNodes":true}]'
-    creationTimestamp: 2019-10-26T14:35:40Z
-    generation: 21
     labels:
       cattle.io/creator: norman
       workload.user.cattle.io/workloadselector: deployment-turing-turing-gate
@@ -597,11 +523,6 @@ items:
       type: RollingUpdate
     template:
       metadata:
-        annotations:
-          cattle.io/timestamp: 2019-10-27T10:07:22Z
-          field.cattle.io/ports: '[[{"containerPort":8765,"dnsName":"turing-gate","kind":"ClusterIP","name":"8765tcp2","protocol":"TCP"}]]'
-          field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.10"],"allNodes":true,"hostname":"gate.iot.store","ingressId":"turing:gate","port":80,"protocol":"HTTP","serviceId":"turing:turing-gate"}]'
-        creationTimestamp: null
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-gate
       spec:
@@ -651,12 +572,6 @@ items:
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-    annotations:
-      deployment.kubernetes.io/revision: "4"
-      field.cattle.io/creatorId: user-ht8t8
-      field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.6"],"port":32625,"protocol":"TCP","serviceName":"turing:turing-mysql-nodeport","allNodes":true}]'
-    creationTimestamp: 2019-11-03T06:40:47Z
-    generation: 12
     labels:
       cattle.io/creator: norman
       workload.user.cattle.io/workloadselector: deployment-turing-turing-mysql
@@ -675,11 +590,6 @@ items:
       type: RollingUpdate
     template:
       metadata:
-        annotations:
-          cattle.io/timestamp: 2019-11-03T07:08:30Z
-          field.cattle.io/ports: '[[{"containerPort":3306,"dnsName":"turing-mysql-nodeport","kind":"NodePort","name":"3306tcp326251","protocol":"TCP","sourcePort":32625}]]'
-          workload.cattle.io/state: '{"d29ya2VyMDQ=":"c-4bf79:m-ee4efbbfa181"}'
-        creationTimestamp: null
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-mysql
       spec:
@@ -708,7 +618,7 @@ items:
           name: turing-mysql
           ports:
           - containerPort: 3306
-            name: 3306tcp326251
+            name: 3306tcp01
             protocol: TCP
           readinessProbe:
             failureThreshold: 3
@@ -750,12 +660,6 @@ items:
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-    annotations:
-      deployment.kubernetes.io/revision: "1"
-      field.cattle.io/creatorId: user-ht8t8
-      field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.10"],"port":80,"protocol":"HTTP","serviceName":"turing:turing-rabbitmq","ingressName":"turing:mq","hostname":"mq.iot.store","allNodes":true}]'
-    creationTimestamp: 2019-11-03T06:16:32Z
-    generation: 2
     labels:
       cattle.io/creator: norman
       workload.user.cattle.io/workloadselector: deployment-turing-turing-rabbitmq
@@ -774,11 +678,6 @@ items:
       type: RollingUpdate
     template:
       metadata:
-        annotations:
-          cattle.io/timestamp: 2019-11-03T06:16:31Z
-          field.cattle.io/ports: '[[{"containerPort":15672,"dnsName":"turing-rabbitmq","kind":"ClusterIP","name":"15672tcp02","protocol":"TCP","sourcePort":0},{"containerPort":15671,"dnsName":"turing-rabbitmq","kind":"ClusterIP","name":"15671tcp02","protocol":"TCP","sourcePort":0}]]'
-          workload.cattle.io/state: '{"d29ya2VyMDY=":"c-4bf79:m-eea6afa631a9"}'
-        creationTimestamp: null
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-rabbitmq
       spec:
@@ -844,11 +743,6 @@ items:
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-    annotations:
-      deployment.kubernetes.io/revision: "1"
-      field.cattle.io/creatorId: user-ht8t8
-    creationTimestamp: 2019-11-03T06:07:23Z
-    generation: 1
     labels:
       cattle.io/creator: norman
       workload.user.cattle.io/workloadselector: deployment-turing-turing-redis
@@ -867,10 +761,6 @@ items:
       type: RollingUpdate
     template:
       metadata:
-        annotations:
-          cattle.io/timestamp: 2019-11-03T06:07:23Z
-          field.cattle.io/ports: '[[{"containerPort":6379,"dnsName":"turing-redis","kind":"ClusterIP","name":"6379tcp02","protocol":"TCP","sourcePort":0}]]'
-        creationTimestamp: null
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-redis
       spec:
@@ -919,12 +809,6 @@ items:
 - apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-    annotations:
-      deployment.kubernetes.io/revision: "2"
-      field.cattle.io/creatorId: user-ht8t8
-      field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.10"],"port":80,"protocol":"HTTP","serviceName":"turing:turing-web","ingressName":"turing:web","hostname":"web.iot.store","allNodes":true}]'
-    creationTimestamp: 2019-10-27T11:34:41Z
-    generation: 8
     labels:
       cattle.io/creator: norman
       workload.user.cattle.io/workloadselector: deployment-turing-turing-web
@@ -943,11 +827,6 @@ items:
       type: RollingUpdate
     template:
       metadata:
-        annotations:
-          cattle.io/timestamp: 2019-10-27T11:34:40Z
-          field.cattle.io/ports: '[[{"containerPort":80,"dnsName":"turing-web","kind":"ClusterIP","name":"80tcp2","protocol":"TCP"}]]'
-          field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.10"],"allNodes":true,"hostname":"web.iot.store","ingressId":"turing:web","port":80,"protocol":"HTTP","serviceId":"turing:turing-web"}]'
-        creationTimestamp: null
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-web
       spec:
