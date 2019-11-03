@@ -1,0 +1,997 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  data:
+    cluster.name: turing-es
+  kind: ConfigMap
+  metadata:
+    annotations:
+      field.cattle.io/creatorId: user-ht8t8
+    creationTimestamp: 2019-11-03T05:59:27Z
+    labels:
+      cattle.io/creator: norman
+    name: es-config
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "9"
+      field.cattle.io/creatorId: user-ht8t8
+    creationTimestamp: 2019-10-26T14:32:52Z
+    generation: 20
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-turing-turing-admin
+    name: turing-admin
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-turing-turing-admin
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: 2019-11-03T04:21:59Z
+          field.cattle.io/ports: '[[{"containerPort":8762,"dnsName":"turing-admin","kind":"ClusterIP","name":"8762tcp02","protocol":"TCP","sourcePort":0}]]'
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-turing-turing-admin
+      spec:
+        containers:
+        - image: hub.iot.store/turing/turing-admin:V1.7.0-RELEASE
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 8762
+            timeoutSeconds: 2
+          name: turing-admin
+          ports:
+          - containerPort: 8762
+            name: 8762tcp02
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 8762
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 1Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+        dnsPolicy: ClusterFirst
+        imagePullSecrets:
+        - name: hub-iot
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "19"
+      field.cattle.io/creatorId: user-ht8t8
+    creationTimestamp: 2019-10-26T11:25:03Z
+    generation: 28
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-turing-turing-auth
+    name: turing-auth
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-turing-turing-auth
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: 2019-11-03T04:30:36Z
+          field.cattle.io/ports: '[[{"containerPort":9777,"dnsName":"turing-auth","kind":"ClusterIP","name":"9777tcp02","protocol":"TCP","sourcePort":0}]]'
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-turing-turing-auth
+      spec:
+        containers:
+        - image: hub.iot.store/turing/turing-auth:V1.7.0-RELEASE
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 100
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 9777
+            timeoutSeconds: 2
+          name: turing-auth
+          ports:
+          - containerPort: 9777
+            name: 9777tcp02
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 100
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 9777
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 1Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+        dnsPolicy: ClusterFirst
+        imagePullSecrets:
+        - name: hub-iot
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "13"
+      field.cattle.io/creatorId: user-ht8t8
+      field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.10"],"port":80,"protocol":"HTTP","serviceName":"turing:turing-center","ingressName":"turing:center","hostname":"center.iot.store","allNodes":true}]'
+    creationTimestamp: 2019-10-26T10:55:37Z
+    generation: 34
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-turing-turing-center
+    name: turing-center
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-turing-turing-center
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: 2019-11-01T09:19:46Z
+          field.cattle.io/ports: '[[{"containerPort":8761,"dnsName":"turing-center","kind":"ClusterIP","name":"8761tcp02","protocol":"TCP","sourcePort":0}]]'
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-turing-turing-center
+      spec:
+        containers:
+        - image: hub.iot.store/turing/turing-center:V1.7.0-RELEASE
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 20
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 8761
+            timeoutSeconds: 2
+          name: turing-center
+          ports:
+          - containerPort: 8761
+            name: 8761tcp02
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 20
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 8761
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+        dnsConfig: {}
+        dnsPolicy: ClusterFirst
+        imagePullSecrets:
+        - name: hub-iot
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "13"
+      field.cattle.io/creatorId: user-ht8t8
+    creationTimestamp: 2019-10-26T11:19:50Z
+    generation: 22
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-turing-turing-config
+    name: turing-config
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-turing-turing-config
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: 2019-11-03T03:49:00Z
+          field.cattle.io/ports: '[[{"containerPort":8750,"dnsName":"turing-config","kind":"ClusterIP","name":"8750tcp02","protocol":"TCP","sourcePort":0}]]'
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-turing-turing-config
+      spec:
+        containers:
+        - image: hub.iot.store/turing/turing-config:V1.7.0-RELEASE
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 8750
+            timeoutSeconds: 2
+          name: turing-config
+          ports:
+          - containerPort: 8750
+            name: 8750tcp02
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 8750
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 256Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+        dnsPolicy: ClusterFirst
+        imagePullSecrets:
+        - name: hub-iot
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "7"
+      field.cattle.io/creatorId: user-ht8t8
+    creationTimestamp: 2019-10-26T15:13:28Z
+    generation: 16
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-turing-turing-datahandler
+    name: turing-datahandler
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-turing-turing-datahandler
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: 2019-11-03T04:22:45Z
+          field.cattle.io/ports: '[[{"containerPort":2345,"dnsName":"turing-datahandler","kind":"ClusterIP","name":"2345tcp02","protocol":"TCP","sourcePort":0}]]'
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-turing-turing-datahandler
+      spec:
+        containers:
+        - image: hub.iot.store/turing/turing-datahandler:V1.7.0-RELEASE
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 120
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 2345
+            timeoutSeconds: 2
+          name: turing-datahandler
+          ports:
+          - containerPort: 2345
+            name: 2345tcp02
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 120
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 2345
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 2Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+        dnsPolicy: ClusterFirst
+        imagePullSecrets:
+        - name: hub-iot
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "12"
+      field.cattle.io/creatorId: user-ht8t8
+    creationTimestamp: 2019-10-26T14:37:10Z
+    generation: 20
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-turing-turing-device
+    name: turing-device
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-turing-turing-device
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: 2019-11-03T04:22:48Z
+          field.cattle.io/ports: '[[{"containerPort":8765,"dnsName":"turing-device","kind":"ClusterIP","name":"8765tcp02","protocol":"TCP","sourcePort":0}]]'
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-turing-turing-device
+      spec:
+        containers:
+        - image: hub.iot.store/turing/turing-device:V1.7.0-RELEASE
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 120
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 2222
+            timeoutSeconds: 2
+          name: turing-device
+          ports:
+          - containerPort: 8765
+            name: 8765tcp02
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 120
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 2222
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 2Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+        dnsPolicy: ClusterFirst
+        imagePullSecrets:
+        - name: hub-iot
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      field.cattle.io/creatorId: user-ht8t8
+    creationTimestamp: 2019-11-03T05:59:57Z
+    generation: 2
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-turing-turing-es
+    name: turing-es
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-turing-turing-es
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: 2019-11-03T06:01:22Z
+          field.cattle.io/ports: '[[{"containerPort":9200,"dnsName":"turing-es","kind":"ClusterIP","name":"9200tcp02","protocol":"TCP","sourcePort":0},{"containerPort":9300,"dnsName":"turing-es","kind":"ClusterIP","name":"9300tcp02","protocol":"TCP","sourcePort":0}]]'
+          workload.cattle.io/state: '{"d29ya2VyMDQ=":"c-4bf79:m-ee4efbbfa181"}'
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-turing-turing-es
+      spec:
+        containers:
+        - env:
+          - name: ES_JAVA_OPTS
+            value: -Xms2g -Xmx2g
+          - name: cluster.name
+            valueFrom:
+              configMapKeyRef:
+                key: cluster.name
+                name: es-config
+                optional: false
+          image: elasticsearch:6.6.2
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 9300
+            timeoutSeconds: 2
+          name: turing-es
+          ports:
+          - containerPort: 9200
+            name: 9200tcp02
+            protocol: TCP
+          - containerPort: 9300
+            name: 9300tcp02
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 9300
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 1Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+          volumeMounts:
+          - mountPath: /usr/share/elasticsearch/data
+            name: es-data
+        dnsPolicy: ClusterFirst
+        nodeName: worker04
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - hostPath:
+            path: /data/es
+            type: DirectoryOrCreate
+          name: es-data
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "7"
+      field.cattle.io/creatorId: user-ht8t8
+      field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.10"],"port":80,"protocol":"HTTP","serviceName":"turing:turing-gate","ingressName":"turing:gate","hostname":"gate.iot.store","allNodes":true}]'
+    creationTimestamp: 2019-10-26T14:35:40Z
+    generation: 21
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-turing-turing-gate
+    name: turing-gate
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-turing-turing-gate
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: 2019-10-27T10:07:22Z
+          field.cattle.io/ports: '[[{"containerPort":8765,"dnsName":"turing-gate","kind":"ClusterIP","name":"8765tcp2","protocol":"TCP"}]]'
+          field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.10"],"allNodes":true,"hostname":"gate.iot.store","ingressId":"turing:gate","port":80,"protocol":"HTTP","serviceId":"turing:turing-gate"}]'
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-turing-turing-gate
+      spec:
+        containers:
+        - image: hub.iot.store/turing/turing-gate:V1.7.0-RELEASE
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 8765
+            timeoutSeconds: 2
+          name: turing-gate
+          ports:
+          - containerPort: 8765
+            name: 8765tcp2
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 8765
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 256Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+        dnsPolicy: ClusterFirst
+        imagePullSecrets:
+        - name: hub-iot
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "4"
+      field.cattle.io/creatorId: user-ht8t8
+      field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.6"],"port":32625,"protocol":"TCP","serviceName":"turing:turing-mysql-nodeport","allNodes":true}]'
+    creationTimestamp: 2019-11-03T06:40:47Z
+    generation: 12
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-turing-turing-mysql
+    name: turing-mysql
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-turing-turing-mysql
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: 2019-11-03T07:08:30Z
+          field.cattle.io/ports: '[[{"containerPort":3306,"dnsName":"turing-mysql-nodeport","kind":"NodePort","name":"3306tcp326251","protocol":"TCP","sourcePort":32625}]]'
+          workload.cattle.io/state: '{"d29ya2VyMDQ=":"c-4bf79:m-ee4efbbfa181"}'
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-turing-turing-mysql
+      spec:
+        containers:
+        - env:
+          - name: MYSQL_DATABASE
+            value: turing_admin
+          - name: MYSQL_PASSWORD
+            value: turing2019
+          - name: MYSQL_ROOT_PASSWORD
+            value: turing2019
+          - name: MYSQL_USER
+            value: turing
+          - name: TZ
+            value: Asia/Shanghai
+          image: hub.iot.store/turing/turing-mysql:V1.7.0-RELEASE
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 3306
+            timeoutSeconds: 2
+          name: turing-mysql
+          ports:
+          - containerPort: 3306
+            name: 3306tcp326251
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 3306
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 1Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+          volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: mysql-data
+        dnsPolicy: ClusterFirst
+        imagePullSecrets:
+        - name: hub-iot
+        nodeName: worker04
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - hostPath:
+            path: /data/mysql
+            type: DirectoryOrCreate
+          name: mysql-data
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      field.cattle.io/creatorId: user-ht8t8
+      field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.10"],"port":80,"protocol":"HTTP","serviceName":"turing:turing-rabbitmq","ingressName":"turing:mq","hostname":"mq.iot.store","allNodes":true}]'
+    creationTimestamp: 2019-11-03T06:16:32Z
+    generation: 2
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-turing-turing-rabbitmq
+    name: turing-rabbitmq
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-turing-turing-rabbitmq
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: 2019-11-03T06:16:31Z
+          field.cattle.io/ports: '[[{"containerPort":15672,"dnsName":"turing-rabbitmq","kind":"ClusterIP","name":"15672tcp02","protocol":"TCP","sourcePort":0},{"containerPort":15671,"dnsName":"turing-rabbitmq","kind":"ClusterIP","name":"15671tcp02","protocol":"TCP","sourcePort":0}]]'
+          workload.cattle.io/state: '{"d29ya2VyMDY=":"c-4bf79:m-eea6afa631a9"}'
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-turing-turing-rabbitmq
+      spec:
+        containers:
+        - env:
+          - name: RABBITMQ_DEFAULT_PASS
+            value: turing2019
+          - name: RABBITMQ_DEFAULT_USER
+            value: root
+          image: rabbitmq:3.6.5-management
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 15672
+            timeoutSeconds: 2
+          name: turing-rabbitmq
+          ports:
+          - containerPort: 15672
+            name: 15672tcp02
+            protocol: TCP
+          - containerPort: 15671
+            name: 15671tcp02
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 15672
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+          volumeMounts:
+          - mountPath: /var/lib/rabbitmq
+            name: rabbitmq-data
+        dnsPolicy: ClusterFirst
+        nodeName: worker06
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - hostPath:
+            path: /data/rabbitmq
+            type: DirectoryOrCreate
+          name: rabbitmq-data
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      field.cattle.io/creatorId: user-ht8t8
+    creationTimestamp: 2019-11-03T06:07:23Z
+    generation: 1
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-turing-turing-redis
+    name: turing-redis
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-turing-turing-redis
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: 2019-11-03T06:07:23Z
+          field.cattle.io/ports: '[[{"containerPort":6379,"dnsName":"turing-redis","kind":"ClusterIP","name":"6379tcp02","protocol":"TCP","sourcePort":0}]]'
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-turing-turing-redis
+      spec:
+        containers:
+        - image: redis:4.0.14-alpine
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 6379
+            timeoutSeconds: 2
+          name: turing-redis
+          ports:
+          - containerPort: 6379
+            name: 6379tcp02
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 6379
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      field.cattle.io/creatorId: user-ht8t8
+      field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.10"],"port":80,"protocol":"HTTP","serviceName":"turing:turing-web","ingressName":"turing:web","hostname":"web.iot.store","allNodes":true}]'
+    creationTimestamp: 2019-10-27T11:34:41Z
+    generation: 8
+    labels:
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-turing-turing-web
+    name: turing-web
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-turing-turing-web
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: 2019-10-27T11:34:40Z
+          field.cattle.io/ports: '[[{"containerPort":80,"dnsName":"turing-web","kind":"ClusterIP","name":"80tcp2","protocol":"TCP"}]]'
+          field.cattle.io/publicEndpoints: '[{"addresses":["10.0.0.10"],"allNodes":true,"hostname":"web.iot.store","ingressId":"turing:web","port":80,"protocol":"HTTP","serviceId":"turing:turing-web"}]'
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-turing-turing-web
+      spec:
+        containers:
+        - image: hub.iot.store/turing/turing-web:V1.7.0-RELEASE
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 80
+            timeoutSeconds: 2
+          name: turing-web
+          ports:
+          - containerPort: 80
+            name: 80tcp2
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 80
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+        dnsPolicy: ClusterFirst
+        imagePullSecrets:
+        - name: hub-iot
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+kind: List
