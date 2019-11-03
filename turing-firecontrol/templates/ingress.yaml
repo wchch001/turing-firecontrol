@@ -34,7 +34,7 @@ spec:
         {{- range .paths }}
           - path: {{ . }}
             backend:
-              serviceName: {{ $fullName }}
+              serviceName: turing-web
               servicePort: {{ $svcPort }}
         {{- end }}
   {{- end }}

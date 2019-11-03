@@ -29,6 +29,8 @@ items:
       type: RollingUpdate
     template:
       metadata:
+        annotations:
+          field.cattle.io/ports: '[[{"containerPort":8762,"dnsName":"turing-admin","kind":"ClusterIP","name":"8762tcp02","protocol":"TCP","sourcePort":0}]]'
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-admin
       spec:
@@ -97,6 +99,8 @@ items:
       type: RollingUpdate
     template:
       metadata:
+        annotations:
+          field.cattle.io/ports: '[[{"containerPort":9777,"dnsName":"turing-auth","kind":"ClusterIP","name":"9777tcp02","protocol":"TCP","sourcePort":0}]]'
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-auth
       spec:
@@ -164,6 +168,8 @@ items:
         maxUnavailable: 0
       type: RollingUpdate
     template:
+      annotations:
+        field.cattle.io/ports: '[[{"containerPort":8761,"dnsName":"turing-center","kind":"ClusterIP","name":"8761tcp02","protocol":"TCP","sourcePort":0}]]'
       metadata:
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-center
@@ -234,6 +240,8 @@ items:
       type: RollingUpdate
     template:
       metadata:
+        annotations:
+          field.cattle.io/ports: '[[{"containerPort":8750,"dnsName":"turing-config","kind":"ClusterIP","name":"8750tcp02","protocol":"TCP","sourcePort":0}]]'
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-config
       spec:
@@ -301,6 +309,8 @@ items:
         maxUnavailable: 0
       type: RollingUpdate
     template:
+      annotations:
+        field.cattle.io/ports: '[[{"containerPort":2345,"dnsName":"turing-datahandler","kind":"ClusterIP","name":"2345tcp02","protocol":"TCP","sourcePort":0}]]'
       metadata:
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-datahandler
@@ -368,6 +378,8 @@ items:
         maxUnavailable: 0
       type: RollingUpdate
     template:
+      annotations:
+        field.cattle.io/ports: '[[{"containerPort":8765,"dnsName":"turing-device","kind":"ClusterIP","name":"8765tcp02","protocol":"TCP","sourcePort":0}]]'
       metadata:
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-device
@@ -435,6 +447,9 @@ items:
         maxUnavailable: 0
       type: RollingUpdate
     template:
+      metadata:
+      annotations:
+        field.cattle.io/ports: '[[{"containerPort":9200,"dnsName":"turing-es","kind":"ClusterIP","name":"9200tcp02","protocol":"TCP","sourcePort":0},{"containerPort":9300,"dnsName":"turing-es","kind":"ClusterIP","name":"9300tcp02","protocol":"TCP","sourcePort":0}]]'
       metadata:
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-es
@@ -522,6 +537,8 @@ items:
         maxUnavailable: 0
       type: RollingUpdate
     template:
+      annotations:
+        field.cattle.io/ports: '[[{"containerPort":8765,"dnsName":"turing-gate","kind":"ClusterIP","name":"8765tcp2","protocol":"TCP"}]]'
       metadata:
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-gate
@@ -585,10 +602,13 @@ items:
         workload.user.cattle.io/workloadselector: deployment-turing-turing-mysql
     strategy:
       rollingUpdate:
-        maxSurge: 1
-        maxUnavailable: 0
+        maxSurge: 0
+        maxUnavailable: 1
       type: RollingUpdate
     template:
+      metadata:
+        annotations:
+          field.cattle.io/ports: '[[{"containerPort":3306,"dnsName":"turing-mysql-nodeport","kind":"NodePort","name":"3306tcp01","protocol":"TCP","sourcePort":0}]]'
       metadata:
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-mysql
@@ -677,6 +697,8 @@ items:
         maxUnavailable: 0
       type: RollingUpdate
     template:
+      annotations:
+        field.cattle.io/ports: '[[{"containerPort":15672,"dnsName":"turing-rabbitmq","kind":"ClusterIP","name":"15672tcp02","protocol":"TCP","sourcePort":0},{"containerPort":15671,"dnsName":"turing-rabbitmq","kind":"ClusterIP","name":"15671tcp02","protocol":"TCP","sourcePort":0}]]'
       metadata:
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-rabbitmq
@@ -760,6 +782,8 @@ items:
         maxUnavailable: 0
       type: RollingUpdate
     template:
+      annotations:
+        field.cattle.io/ports: '[[{"containerPort":6379,"dnsName":"turing-redis","kind":"ClusterIP","name":"6379tcp02","protocol":"TCP","sourcePort":0}]]'
       metadata:
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-redis
@@ -826,6 +850,8 @@ items:
         maxUnavailable: 0
       type: RollingUpdate
     template:
+      annotations:
+        field.cattle.io/ports: '[[{"containerPort":80,"dnsName":"turing-web","kind":"ClusterIP","name":"80tcp2","protocol":"TCP"}]]'
       metadata:
         labels:
           workload.user.cattle.io/workloadselector: deployment-turing-turing-web
