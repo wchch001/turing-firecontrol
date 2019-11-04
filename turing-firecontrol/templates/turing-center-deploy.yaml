@@ -57,8 +57,6 @@ spec:
           privileged: false
           readOnlyRootFilesystem: false
           runAsNonRoot: false
-      dnsConfig: {}
-      dnsPolicy: ClusterFirst
       imagePullSecrets:
       - name: hub-iot
       restartPolicy: Always

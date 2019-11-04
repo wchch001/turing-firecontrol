@@ -57,11 +57,6 @@ items:
             privileged: false
             readOnlyRootFilesystem: false
             runAsNonRoot: false
-          stdin: true
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          tty: true
-        dnsPolicy: ClusterFirst
         imagePullSecrets:
         - name: hub-iot
         restartPolicy: Always
@@ -125,11 +120,6 @@ items:
             privileged: false
             readOnlyRootFilesystem: false
             runAsNonRoot: false
-          stdin: true
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          tty: true
-        dnsPolicy: ClusterFirst
         imagePullSecrets:
         - name: hub-iot
         restartPolicy: Always
@@ -193,11 +183,6 @@ items:
             privileged: false
             readOnlyRootFilesystem: false
             runAsNonRoot: false
-          stdin: true
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          tty: true
-        dnsPolicy: ClusterFirst
         imagePullSecrets:
         - name: hub-iot
         restartPolicy: Always
@@ -260,11 +245,6 @@ items:
             privileged: false
             readOnlyRootFilesystem: false
             runAsNonRoot: false
-          stdin: true
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          tty: true
-        dnsPolicy: ClusterFirst
         imagePullSecrets:
         - name: hub-iot
         restartPolicy: Always
@@ -327,11 +307,6 @@ items:
             privileged: false
             readOnlyRootFilesystem: false
             runAsNonRoot: false
-          stdin: true
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          tty: true
-        dnsPolicy: ClusterFirst
         imagePullSecrets:
         - name: hub-iot
         restartPolicy: Always
@@ -408,14 +383,9 @@ items:
             privileged: false
             readOnlyRootFilesystem: false
             runAsNonRoot: false
-          stdin: true
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          tty: true
           volumeMounts:
           - mountPath: /usr/share/elasticsearch/data
             name: es-data
-        dnsPolicy: ClusterFirst
         nodeName: worker06
         restartPolicy: Always
         schedulerName: default-scheduler
@@ -482,11 +452,6 @@ items:
             privileged: false
             readOnlyRootFilesystem: false
             runAsNonRoot: false
-          stdin: true
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          tty: true
-        dnsPolicy: ClusterFirst
         imagePullSecrets:
         - name: hub-iot
         restartPolicy: Always
@@ -561,14 +526,9 @@ items:
             privileged: false
             readOnlyRootFilesystem: false
             runAsNonRoot: false
-          stdin: true
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          tty: true
           volumeMounts:
           - mountPath: /var/lib/mysql
             name: mysql-data
-        dnsPolicy: ClusterFirst
         imagePullSecrets:
         - name: hub-iot
         nodeName: worker06
@@ -646,14 +606,9 @@ items:
             privileged: false
             readOnlyRootFilesystem: false
             runAsNonRoot: false
-          stdin: true
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          tty: true
           volumeMounts:
           - mountPath: /var/lib/rabbitmq
             name: rabbitmq-data
-        dnsPolicy: ClusterFirst
         nodeName: worker04
         restartPolicy: Always
         schedulerName: default-scheduler
@@ -721,11 +676,6 @@ items:
             privileged: false
             readOnlyRootFilesystem: false
             runAsNonRoot: false
-          stdin: true
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          tty: true
-        dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
         securityContext: {}
@@ -786,11 +736,6 @@ items:
             privileged: false
             readOnlyRootFilesystem: false
             runAsNonRoot: false
-          stdin: true
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          tty: true
-        dnsPolicy: ClusterFirst
         imagePullSecrets:
         - name: hub-iot
         restartPolicy: Always
