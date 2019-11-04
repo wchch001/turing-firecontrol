@@ -11,10 +11,10 @@ spec:
       port: 15672
       protocol: TCP
       targetPort: 15672
-    - name: 15671tcp02
-      port: 15671
+    - name: 5672tcp02
+      port: 5672
       protocol: TCP
-      targetPort: 15671
+      targetPort: 5672
   selector:
     app.kubernetes.io/name: turing-rabbitmq
     app.kubernetes.io/instance: {{ .Release.Name }}

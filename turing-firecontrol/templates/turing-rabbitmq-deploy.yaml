@@ -45,8 +45,8 @@ spec:
             - containerPort: 15672
               name: 15672tcp02
               protocol: TCP
-            - containerPort: 15671
-              name: 15671tcp02
+            - containerPort: 5672
+              name: 5672tcp02
               protocol: TCP
           readinessProbe:
             failureThreshold: 3
