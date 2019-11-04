@@ -2,7 +2,8 @@
 kind: Service
 metadata:
   labels:
-    cattle.io/creator: norman
+    app.kubernetes.io/name: turing-web
+    app.kubernetes.io/instance: {{ .Release.Name }}
   name: turing-web
 spec:
   ports:

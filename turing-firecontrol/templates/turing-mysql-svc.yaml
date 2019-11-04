@@ -2,7 +2,8 @@
 kind: Service
 metadata:
   labels:
-    cattle.io/creator: norman
+    app.kubernetes.io/name: turing-mysql
+    app.kubernetes.io/instance: {{ .Release.Name }}
   name: turing-mysql
 spec:
   ports:
@@ -11,5 +12,6 @@ spec:
     protocol: TCP
     targetPort: 3306
   selector:
-    workload.user.cattle.io/workloadselector: deployment-turing-turing-mysql
+    app.kubernetes.io/name: turing-mysql
+    app.kubernetes.io/instance: {{ .Release.Name }}
   type: ClusterIP

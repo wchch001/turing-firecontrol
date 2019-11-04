@@ -2,7 +2,8 @@
 kind: Service
 metadata:
   labels:
-    cattle.io/creator: norman
+    app.kubernetes.io/name: turing-es
+    app.kubernetes.io/instance: {{ .Release.Name }}
   name: turing-es
 spec:
   ports:
@@ -15,5 +16,6 @@ spec:
     protocol: TCP
     targetPort: 9300
   selector:
-    workload.user.cattle.io/workloadselector: deployment-turing-turing-es
+    app.kubernetes.io/name: turing-es
+    app.kubernetes.io/instance: {{ .Release.Name }}
   type: ClusterIP

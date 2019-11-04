@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: turing-mysql
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  name: turing-mysql
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: turing-mysql
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: turing-mysql
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_DATABASE
+          value: turing_admin
+        - name: MYSQL_PASSWORD
+          value: turing2019
+        - name: MYSQL_ROOT_PASSWORD
+          value: turing2019
+        - name: MYSQL_USER
+          value: turing
+        - name: TZ
+          value: Asia/Shanghai
+        image: hub.iot.store/turing/turing-mysql:V1.7.0-RELEASE
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 2
+          successThreshold: 1
+          tcpSocket:
+            port: 3306
+          timeoutSeconds: 2
+        name: turing-mysql
+        ports:
+        - containerPort: 3306
+          name: 3306tcp01
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 2
+          successThreshold: 2
+          tcpSocket:
+            port: 3306
+          timeoutSeconds: 2
+        resources:
+          requests:
+            memory: 1Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: {}
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: mysql-data
+      imagePullSecrets:
+      - name: hub-iot
+      nodeName: worker06
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - hostPath:
+          path: /data/mysql
+          type: DirectoryOrCreate
+        name: mysql-data
