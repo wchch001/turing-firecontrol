@@ -7,14 +7,14 @@ metadata:
   name: turing-rabbitmq
 spec:
   ports:
-  - name: 15672tcp02
-    port: 15672
-    protocol: TCP
-    targetPort: 15672
-  - name: 15671tcp02
-    port: 15671
-    protocol: TCP
-    targetPort: 15671
+    - name: 15672tcp02
+      port: 15672
+      protocol: TCP
+      targetPort: 15672
+    - name: 15671tcp02
+      port: 15671
+      protocol: TCP
+      targetPort: 15671
   selector:
     app.kubernetes.io/name: turing-rabbitmq
     app.kubernetes.io/instance: {{ .Release.Name }}

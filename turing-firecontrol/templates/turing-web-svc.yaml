@@ -7,10 +7,10 @@ metadata:
   name: turing-web
 spec:
   ports:
-  - name: 80tcp02
-    port: 80
-    protocol: TCP
-    targetPort: 80
+    - name: 80tcp02
+      port: 80
+      protocol: TCP
+      targetPort: 80
   selector:
     app.kubernetes.io/name: turing-web
     app.kubernetes.io/instance: {{ .Release.Name }}

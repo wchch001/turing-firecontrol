@@ -25,38 +25,38 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
-      - image: redis:4.0.14-alpine
-        imagePullPolicy: IfNotPresent
-        livenessProbe:
-          failureThreshold: 3
-          initialDelaySeconds: 10
-          periodSeconds: 2
-          successThreshold: 1
-          tcpSocket:
-            port: 6379
-          timeoutSeconds: 2
-        name: turing-redis
-        ports:
-        - containerPort: 6379
-          name: 6379tcp02
-          protocol: TCP
-        readinessProbe:
-          failureThreshold: 3
-          initialDelaySeconds: 10
-          periodSeconds: 2
-          successThreshold: 2
-          tcpSocket:
-            port: 6379
-          timeoutSeconds: 2
-        resources:
-          requests:
-            memory: 512Mi
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities: {}
-          privileged: false
-          readOnlyRootFilesystem: false
-          runAsNonRoot: false
+        - image: redis:4.0.14-alpine
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 6379
+            timeoutSeconds: 2
+          name: turing-redis
+          ports:
+            - containerPort: 6379
+              name: 6379tcp02
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 6379
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}

@@ -7,10 +7,10 @@ metadata:
   name: turing-config
 spec:
   ports:
-  - name: 8750tcp02
-    port: 8750
-    protocol: TCP
-    targetPort: 8750
+    - name: 8750tcp02
+      port: 8750
+      protocol: TCP
+      targetPort: 8750
   selector:
     app.kubernetes.io/name: turing-config
     app.kubernetes.io/instance: {{ .Release.Name }}

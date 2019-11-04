@@ -7,10 +7,10 @@ metadata:
   name: turing-redis
 spec:
   ports:
-  - name: 6379tcp02
-    port: 6379
-    protocol: TCP
-    targetPort: 6379
+    - name: 6379tcp02
+      port: 6379
+      protocol: TCP
+      targetPort: 6379
   selector:
     app.kubernetes.io/name: turing-redis
     app.kubernetes.io/instance: {{ .Release.Name }}

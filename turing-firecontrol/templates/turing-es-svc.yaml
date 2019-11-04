@@ -7,14 +7,14 @@ metadata:
   name: turing-es
 spec:
   ports:
-  - name: 9200tcp02
-    port: 9200
-    protocol: TCP
-    targetPort: 9200
-  - name: 9300tcp02
-    port: 9300
-    protocol: TCP
-    targetPort: 9300
+    - name: 9200tcp02
+      port: 9200
+      protocol: TCP
+      targetPort: 9200
+    - name: 9300tcp02
+      port: 9300
+      protocol: TCP
+      targetPort: 9300
   selector:
     app.kubernetes.io/name: turing-es
     app.kubernetes.io/instance: {{ .Release.Name }}

@@ -7,10 +7,10 @@ metadata:
   name: turing-datahandler
 spec:
   ports:
-  - name: 2345tcp02
-    port: 2345
-    protocol: TCP
-    targetPort: 2345
+    - name: 2345tcp02
+      port: 2345
+      protocol: TCP
+      targetPort: 2345
   selector:
     app.kubernetes.io/name: turing-datahandler
     app.kubernetes.io/instance: {{ .Release.Name }}

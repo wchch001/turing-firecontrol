@@ -25,56 +25,56 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
-      - env:
-        - name: RABBITMQ_DEFAULT_PASS
-          value: turing2019
-        - name: RABBITMQ_DEFAULT_USER
-          value: root
-        image: rabbitmq:3.6.5-management
-        imagePullPolicy: IfNotPresent
-        livenessProbe:
-          failureThreshold: 3
-          initialDelaySeconds: 10
-          periodSeconds: 2
-          successThreshold: 1
-          tcpSocket:
-            port: 15672
-          timeoutSeconds: 2
-        name: turing-rabbitmq
-        ports:
-        - containerPort: 15672
-          name: 15672tcp02
-          protocol: TCP
-        - containerPort: 15671
-          name: 15671tcp02
-          protocol: TCP
-        readinessProbe:
-          failureThreshold: 3
-          initialDelaySeconds: 10
-          periodSeconds: 2
-          successThreshold: 2
-          tcpSocket:
-            port: 15672
-          timeoutSeconds: 2
-        resources:
-          requests:
-            memory: 512Mi
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities: {}
-          privileged: false
-          readOnlyRootFilesystem: false
-          runAsNonRoot: false
-        volumeMounts:
-        - mountPath: /var/lib/rabbitmq
-          name: rabbitmq-data
+        - env:
+            - name: RABBITMQ_DEFAULT_PASS
+              value: turing2019
+            - name: RABBITMQ_DEFAULT_USER
+              value: root
+          image: rabbitmq:3.6.5-management
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 15672
+            timeoutSeconds: 2
+          name: turing-rabbitmq
+          ports:
+            - containerPort: 15672
+              name: 15672tcp02
+              protocol: TCP
+            - containerPort: 15671
+              name: 15671tcp02
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 15672
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          volumeMounts:
+            - mountPath: /var/lib/rabbitmq
+              name: rabbitmq-data
       nodeName: worker04
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
       volumes:
-      - hostPath:
-          path: /data/rabbitmq
-          type: DirectoryOrCreate
-        name: rabbitmq-data
+        - hostPath:
+            path: /data/rabbitmq
+            type: DirectoryOrCreate
+          name: rabbitmq-data

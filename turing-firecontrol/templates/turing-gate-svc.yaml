@@ -7,10 +7,10 @@ metadata:
   name: turing-gate
 spec:
   ports:
-  - name: 8765tcp02
-    port: 8765
-    protocol: TCP
-    targetPort: 8765
+    - name: 8765tcp02
+      port: 8765
+      protocol: TCP
+      targetPort: 8765
   selector:
     app.kubernetes.io/name: turing-gate
     app.kubernetes.io/instance: {{ .Release.Name }}

@@ -25,40 +25,40 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
-      - image: hub.iot.store/turing/turing-center:V1.7.0-RELEASE
-        imagePullPolicy: IfNotPresent
-        livenessProbe:
-          failureThreshold: 3
-          initialDelaySeconds: 20
-          periodSeconds: 2
-          successThreshold: 1
-          tcpSocket:
-            port: 8761
-          timeoutSeconds: 2
-        name: turing-center
-        ports:
-        - containerPort: 8761
-          name: 8761tcp02
-          protocol: TCP
-        readinessProbe:
-          failureThreshold: 3
-          initialDelaySeconds: 20
-          periodSeconds: 2
-          successThreshold: 2
-          tcpSocket:
-            port: 8761
-          timeoutSeconds: 2
-        resources:
-          requests:
-            memory: 128Mi
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities: {}
-          privileged: false
-          readOnlyRootFilesystem: false
-          runAsNonRoot: false
+        - image: hub.iot.store/turing/turing-center:V1.7.0-RELEASE
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 20
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 8761
+            timeoutSeconds: 2
+          name: turing-center
+          ports:
+            - containerPort: 8761
+              name: 8761tcp02
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 20
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 8761
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
       imagePullSecrets:
-      - name: hub-iot
+        - name: hub-iot
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}

@@ -25,39 +25,39 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
-      - image: hub.iot.store/turing/turing-datahandler:V1.7.0-RELEASE
-        imagePullPolicy: Always
-        livenessProbe:
-          failureThreshold: 3
-          initialDelaySeconds: 120
-          periodSeconds: 2
-          successThreshold: 1
-          tcpSocket:
-            port: 2345
-          timeoutSeconds: 2
-        name: turing-datahandler
-        ports:
-        - containerPort: 2345
-          name: 2345tcp02
-          protocol: TCP
-        readinessProbe:
-          failureThreshold: 3
-          initialDelaySeconds: 120
-          periodSeconds: 2
-          successThreshold: 2
-          tcpSocket:
-            port: 2345
-          timeoutSeconds: 2
-        resources:
-          requests:
-            memory: 2Gi
-        securityContext:
-          allowPrivilegeEscalation: false
-          privileged: false
-          readOnlyRootFilesystem: false
-          runAsNonRoot: false
+        - image: hub.iot.store/turing/turing-datahandler:V1.7.0-RELEASE
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 120
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 2345
+            timeoutSeconds: 2
+          name: turing-datahandler
+          ports:
+            - containerPort: 2345
+              name: 2345tcp02
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 120
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 2345
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 2Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
       imagePullSecrets:
-      - name: hub-iot
+        - name: hub-iot
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}

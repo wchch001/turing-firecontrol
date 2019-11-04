@@ -7,10 +7,10 @@ metadata:
   name: turing-center
 spec:
   ports:
-  - name: 8761tcp02
-    port: 8761
-    protocol: TCP
-    targetPort: 8761
+    - name: 8761tcp02
+      port: 8761
+      protocol: TCP
+      targetPort: 8761
   selector:
     app.kubernetes.io/name: turing-center
     app.kubernetes.io/instance: {{ .Release.Name }}

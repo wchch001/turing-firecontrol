@@ -24,39 +24,39 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
-      - image: hub.iot.store/turing/turing-web:V1.7.0-RELEASE
-        imagePullPolicy: IfNotPresent
-        livenessProbe:
-          failureThreshold: 3
-          initialDelaySeconds: 10
-          periodSeconds: 2
-          successThreshold: 1
-          tcpSocket:
-            port: 80
-          timeoutSeconds: 2
-        name: turing-web
-        ports:
-        - containerPort: 80
-          name: 80tcp2
-          protocol: TCP
-        readinessProbe:
-          failureThreshold: 3
-          initialDelaySeconds: 10
-          periodSeconds: 2
-          successThreshold: 2
-          tcpSocket:
-            port: 80
-          timeoutSeconds: 2
-        resources:
-          requests:
-            memory: 128Mi
-        securityContext:
-          allowPrivilegeEscalation: false
-          privileged: false
-          readOnlyRootFilesystem: false
-          runAsNonRoot: false
+        - image: hub.iot.store/turing/turing-web:V1.7.0-RELEASE
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 1
+            tcpSocket:
+              port: 80
+            timeoutSeconds: 2
+          name: turing-web
+          ports:
+            - containerPort: 80
+              name: 80tcp2
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 2
+            successThreshold: 2
+            tcpSocket:
+              port: 80
+            timeoutSeconds: 2
+          resources:
+            requests:
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
       imagePullSecrets:
-      - name: hub-iot
+        - name: hub-iot
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}

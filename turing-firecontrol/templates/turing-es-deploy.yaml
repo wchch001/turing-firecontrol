@@ -47,12 +47,12 @@ spec:
           timeoutSeconds: 2
         name: turing-es
         ports:
-        - containerPort: 9200
-          name: 9200tcp02
-          protocol: TCP
-        - containerPort: 9300
-          name: 9300tcp02
-          protocol: TCP
+          - containerPort: 9200
+            name: 9200tcp02
+            protocol: TCP
+          - containerPort: 9300
+            name: 9300tcp02
+            protocol: TCP
         readinessProbe:
           failureThreshold: 3
           initialDelaySeconds: 30

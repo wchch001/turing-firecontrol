@@ -7,10 +7,10 @@ metadata:
   name: turing-admin
 spec:
   ports:
-  - name: 8762tcp02
-    port: 8762
-    protocol: TCP
-    targetPort: 8762
+    - name: 8762tcp02
+      port: 8762
+      protocol: TCP
+      targetPort: 8762
   selector:
     app.kubernetes.io/name: turing-admin
     app.kubernetes.io/instance: {{ .Release.Name }}

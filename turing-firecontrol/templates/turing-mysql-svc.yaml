@@ -7,10 +7,10 @@ metadata:
   name: turing-mysql
 spec:
   ports:
-  - name: 3306tcp01-turing-mysql
-    port: 3306
-    protocol: TCP
-    targetPort: 3306
+    - name: 3306tcp01-turing-mysql
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
   selector:
     app.kubernetes.io/name: turing-mysql
     app.kubernetes.io/instance: {{ .Release.Name }}
